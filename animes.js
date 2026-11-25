@@ -125,7 +125,7 @@ const ANIMES = [
     sous_titres: "Français, English, Deutsch, Español (América Latina), Español (España), Italiano, Polski, Português (Brasil), Русский, العربية",
     avertissement: "Violence",
     source: "Crunchyroll",
-    vedette: false,
+    vedette: true,
   },
   {
     titre: "Call of the Night",
@@ -191,7 +191,7 @@ const ANIMES = [
     sous_titres: "Français, English, Bahasa Indonesia, Deutsch, Español (América Latina), Español (España), Italiano, Polski, Português (Brasil), Русский, العربية",
     avertissement: "Violence, Violence sexuelle, Dialogues suggestifs, Tabagisme",
     source: "Crunchyroll",
-    vedette: true,
+    vedette: false,
   },
   {
     titre: "Kaiju No. 8",
@@ -312,7 +312,7 @@ const ANIMES = [
     sous_titres: "Français, English, Bahasa Indonesia, Bahasa Melayu, Deutsch, Español (América Latina), Español (España), Italiano, 한국어, Polski, Português (Brasil), Tiếng Việt, Русский, العربية, हिंदी, 中文 (简体), ไทย, Filipino",
     avertissement: "Violence, Torture, Images à caractère sexuel",
     source: "Crunchyroll",
-    vedette: true,
+    vedette: false,
   },
   {
     titre: "Tokyo Revengers",
@@ -338,7 +338,7 @@ const ANIMES = [
     sous_titres: "Français, English, Deutsch, Español (América Latina), Español (España), Italiano, Polski, Português (Brasil), Türkçe, Русский, العربية",
     avertissement: "Violence, Sang/Gore, Contenu sexuel, Nudité, Grossièretés",
     source: "Crunchyroll",
-    vedette: true,
+    vedette: false,
   },{
     titre: "Fullmetal Alchemist: Brotherhood",
     lien: "https://animationdigitalnetwork.com/video/1103-fullmetal-alchemist-brotherhood",
@@ -522,7 +522,7 @@ const ANIMES = [
     avertissement: "Non indiqué",
     source_adn: "ADN",
     message: "Indisponible selon votre région. VPN éventuellement nécessaire.",
-    vedette: true,
+    vedette: false,
   },
   {
     titre: "Blue Box (Ao no Hako)",
@@ -784,7 +784,7 @@ const ANIMES = [
     sous_titres: "Français, Anglais",
     avertissement: "fan service, nudité partielle, sous-entendus sexuels et violence légère",
     source_netflix: "Netflix",
-    vedette: false,
+    vedette: true,
   },
   {
     titre: "Blue Exorcist",
@@ -993,7 +993,7 @@ const ANIMES = [
     sous_titres: "Français, English, Deutsch, Español (América Latina), Español (España), Italiano, 한국어, Polski, Português (Brasil), Русский, العربية, ไทย",
     avertissement: "Violence, Dialogues suggestifs, Images à caractère sexuel",
     source: "Crunchyroll",
-    vedette: false,
+    vedette: true,
   },
   {
     titre: "Suzume",
@@ -1006,7 +1006,7 @@ const ANIMES = [
     sous_titres: "Français, English, Deutsch, Español (América Latina), Español (España), Italiano, Polski, Português (Brasil), Português (Portugal), Русский, العربية",
     avertissement: "Grossièretés, Violence",
     source: "Crunchyroll",
-    vedette: false,
+    vedette: true,
   },
   {
     titre: "Lycoris Recoil",
@@ -1045,7 +1045,7 @@ const ANIMES = [
     sous_titres: "English, Español (América Latina), Português (Brasil),العربية",
     avertissement: "Violence, Images à caractère sexuel, Usage de drogues/alcool , Tabagisme",
     source: "Crunchyroll",
-    vedette: false,
+    vedette: true,
   },
   {
     titre: "TONIKAWA: Over The Moon For You",
