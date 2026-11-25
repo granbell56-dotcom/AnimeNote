@@ -489,7 +489,7 @@ const ANIMES = [
     image: "my-dress-up.jpg",
     note: 4.8,
     genres: ["Romance", "Méchants"],
-    description: "Torako Koshi est une lycéenne modèle, mais personne ne sait qu’auparavant, elle était une délinquante. Un jour, elle croise la route d’une drôle de fille avec des bois sur la tête, coincée dans des lignes électriques : Shikanoko, alias Nokotan. Qui est-elle ? Un humain ? Un cerf ? En tous cas, elle connaît le secret de Torako et l’embarque dans une aventure complètement folle.",
+    description: "Gojô Wakana est un jeune lycéen qui rêve de fabriquer des poupées traditionnelles japonaises. Obnubilé par sa passion, il ne se tient pas au courant des dernières tendances et a donc du mal à s'intégrer dans sa classe. Pour lui, Kitagawa Marine, qui est toujours au centre de l'attention, vit dans un autre monde que lui. Mais un beau jour, grâce à un heureux hasard, il va se retrouver à partager un secret avec Marine ?! Deux mondes qui n'auraient jamais dû se croiser vont s'entremêler !",
     audio: "Japanese, Français, English, Deutsch, Español (América Latina), Español (España), Italiano, Português (Brasil)",
     sous_titres: "Français, English, Bahasa Indonesia, Bahasa Melayu, Deutsch, Español (América Latina), Español (España), Italiano, Polski, Português (Brasil), Tiếng Việt, Русский, العربية, हिंदी, 中文 (简体), 中文 (繁體), ไทย",
     avertissement: "Dialogues suggestifs, Nudité",
