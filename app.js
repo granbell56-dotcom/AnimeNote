@@ -424,9 +424,9 @@
     }
   });
 
-  /* ===== MENU GENRE FAIT MAISON ===== */
-  (function () {
-    const select = document.getElementById("genreSelect");
+  /* ===== MENUS GENRE ET TRI FAITS MAISON ===== */
+  ["genreSelect", "sort"].forEach(function (id) {
+    const select = document.getElementById(id);
     if (!select) return;
 
     // On crée le bouton et la liste
@@ -441,35 +441,37 @@
     select.after(box);
     select.style.display = "none"; // le vrai select est caché mais reste utilisé
 
-    
     function build() {
       list.innerHTML = "";
       const choisi = select.options[select.selectedIndex];
-      btn.textContent = choisi ? choisi.text : "Tous les genres";
+      btn.textContent = choisi ? choisi.text : (select.options[0]?.text || "");
       for (const opt of select.options) {
         const li = document.createElement("li");
         li.textContent = opt.text;
         if (opt.value === select.value) li.classList.add("on");
         li.onclick = () => {
           select.value = opt.value;
-          select.dispatchEvent(new Event("change")); // ton filtre existant se déclenche
+          select.dispatchEvent(new Event("change")); // le gestionnaire existant se déclenche
           box.classList.remove("open");
           build();
         };
-      list.append(li);
+        list.append(li);
+      }
     }
-  }
 
     btn.onclick = () => {
       build(); // on recopie la liste à jour juste avant d'ouvrir
-      box.classList.toggle("open");
-  };
+      const ouvrir = !box.classList.contains("open");
+      document.querySelectorAll(".dd.open").forEach((autre) => autre.classList.remove("open"));
+      if (ouvrir) box.classList.add("open");
+    };
+    select.addEventListener("change", build);
+    new MutationObserver(build).observe(select, { childList: true });
     document.addEventListener("click", (e) => {
       if (!box.contains(e.target)) box.classList.remove("open"); // clic ailleurs = fermer
-  });
+    });
     build();
-
-})();
+  });
   /* ===== Démarrage ===== */
   construireFiltres();
   initialiserHero();
