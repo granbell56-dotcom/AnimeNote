@@ -130,7 +130,7 @@ const ANIMES = [
   {
     titre: "Call of the Night",
     lien: "https://animationdigitalnetwork.com/video/912-call-of-the-night",
-    image: "night.jpg",
+    image: "night.webp",
     note: 4.7,
     genres: ["Romance", "Surnaturel", "Fantasy", "Comédie", "Tranche de vie"],
     description: "Bien qu’il soit apprécié par ses camarades, Kô Yamori, collégien de 14 ans, arbore pour autant un comportement de façade, ce qui l’amène à stopper son cursus scolaire. Victime d’insomnies depuis quelque temps, il commence à errer la nuit dans l’espoir d’endiguer ce phénomène. C’est lors d’une d’elles qu’il rencontre Nazuna Nanakusa, une vampire, également appelée « marcheur de nuit » qui lui donne l’envie d’en devenir également un. La seule condition pour qu’elle accède à sa demande est que Kô tombe amoureux d’elle, ce qui semble complexe pour cet adolescent solitaire…",
