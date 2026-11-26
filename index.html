@@ -5,101 +5,158 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
   <link rel="icon" type="image/png" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09070b">
+  <meta name="description" content="AnimeNote : découvrez, filtrez et notez vos animés préférés.">
   <title>AnimeNote — Notes et listes d'animés</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="top">
+  <!--
+    === STRUCTURE DE LA PAGE ===
+    Ce fichier contient seulement la structure et les textes fixes de l'interface.
+    Pour ajouter/modifier les animés, change animes.js (la liste ANIMES).
+    Pour ajouter une plateforme, modifie aussi le tableau PLATFORMES au début de app.js.
+    Les boutons de plateformes et le menu des genres sont remplis automatiquement.
+  -->
+  <header class="top" id="haut">
     <div class="bar wrap">
-      <a class="logo" href="#"><i>★</i> ANIMENOTE</a>
-      <nav>
-        <a href="#" data-nav="home">Accueil</a>
+      <a class="logo" href="#accueil" aria-label="AnimeNote, accueil"><span class="logo-star">★</span> ANIMENOTE</a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="#accueil" data-nav="home">Accueil</a>
         <a href="#aide" data-nav="aide">Aide</a>
+        <a href="#note" data-nav="note">Note</a>
       </nav>
-      <input id="q" class="search" type="search" placeholder="Rechercher un animé…" aria-label="Rechercher un animé">
+      <label class="search-wrap" for="q"><span aria-hidden="true">⌕</span>
+        <input id="q" class="search" type="search" placeholder="Rechercher un animé…" aria-label="Rechercher un animé">
+      </label>
     </div>
-    <div class="cats wrap" id="cats"></div>
+    <!-- Ce panneau de plateformes reste toujours séparé et visible, jamais dans le menu genres. -->
+    <div class="filter-zone wrap" id="filterZone">
+      <div class="platform-filter" aria-label="Filtrer par plateforme">
+        <span class="filter-caption">PLATEFORMES</span>
+        <div class="platform-buttons" id="platforms" role="group" aria-label="Choisir une plateforme"></div>
+      </div>
+      <label class="genre-filter" for="genreSelect">
+        <span class="filter-caption">GENRE</span>
+        <select id="genreSelect" aria-label="Filtrer par genre">
+          <option value="Tout">Tous les genres</option>
+        </select>
+      </label>
+    </div>
   </header>
 
   <main id="home">
-    <section class="hero" id="hero">
-      <div class="hero-bg" id="heroBg"></div>
+    <section class="hero" id="hero" aria-label="Animé à découvrir">
+      <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
       <div class="wrap hero-in" id="heroIn"></div>
-      <div class="wrap dots" id="dots"></div>
+      <div class="wrap dots" id="dots" aria-label="Choisir une vedette"></div>
     </section>
 
-    <section class="wrap block" id="topBlock">
+    <section class="wrap block top-block" id="topBlock">
       <div class="head">
-        <h2>Les mieux notés</h2>
-        <div class="arrows">
+        <div><span class="eyebrow">SÉLECTION DE LA COMMUNAUTÉ</span><h2>Les mieux notés</h2></div>
+        <div class="arrows" aria-label="Faire défiler les mieux notés">
           <button type="button" id="prev" aria-label="Précédent">‹</button>
           <button type="button" id="next" aria-label="Suivant">›</button>
         </div>
       </div>
-      <div class="row" id="topRow"></div>
+      <div class="row" id="topRow" aria-label="Animés les mieux notés"></div>
     </section>
 
-    <section class="wrap block">
-      <div class="head">
-        <div>
-          <h2 id="gridTitle">Tous les animés</h2>
-          <p class="mut" id="count"></p>
-        </div>
-        <select id="sort" aria-label="Trier par">
-          <option value="note">Meilleure note</option>
-          <option value="az">Titre A → Z</option>
-          <option value="recent">Derniers ajoutés</option>
-        </select>
+    <section class="wrap block catalogue">
+      <div class="head catalogue-head">
+        <div><span class="eyebrow">À VOUS DE CHOISIR</span><h2 id="gridTitle">Tous les animés</h2><p class="mut" id="count" aria-live="polite"></p></div>
+        <label class="sort-label" for="sort"><span>Trier par</span>
+          <select id="sort" aria-label="Trier les animés">
+            <option value="note">Meilleure note</option>
+            <option value="az">Titre A → Z</option>
+            <option value="recent">Derniers ajoutés</option>
+          </select>
+        </label>
       </div>
       <div class="grid" id="grid"></div>
-      <p class="empty" id="empty" hidden>Aucun animé trouvé 😢</p>
+      <p class="empty" id="empty" hidden>Aucun animé ne correspond à ces filtres 😢</p>
     </section>
   </main>
 
+  <!-- L'onglet Aide et son formulaire restent disponibles via #aide. -->
   <main id="aide" class="wrap aide" hidden>
     <span class="tag">Aide & avis</span>
     <h1>Une idée, un conseil ?</h1>
     <p class="mut">Dis-moi ce que tu penses du site, propose un animé à ajouter ou signale un problème.</p>
-
     <div class="aide-grid">
       <form id="avis" class="panel">
-        <label>Ton pseudo (facultatif)
-          <input name="pseudo" maxlength="40" autocomplete="nickname">
-        </label>
-        <label>Type de message
-          <select name="type">
-            <option>Conseil / idée</option>
-            <option>Suggestion d'animé</option>
-            <option>Bug sur le site</option>
-            <option>Autre</option>
-          </select>
-        </label>
-        <label>Ton message
-          <textarea name="message" rows="6" required minlength="5" maxlength="2000"></textarea>
-        </label>
+        <label>Ton pseudo (facultatif)<input name="pseudo" maxlength="40" autocomplete="nickname"></label>
+        <label>Type de message<select name="type"><option>Conseil / idée</option><option>Suggestion d'animé</option><option>Bug sur le site</option><option>Autre</option></select></label>
+        <label>Ton message<textarea name="message" rows="6" required minlength="5" maxlength="2000"></textarea></label>
         <input name="_gotcha" class="piege" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn primary" type="submit">Envoyer mon avis</button>
-        <p id="avisMsg" class="mut" role="status"></p>
+        <p id="avisMsg" class="mut" role="status" aria-live="polite"></p>
       </form>
-
       <div class="panel faq">
         <h2>Questions fréquentes</h2>
-        <details><summary>Comment sont données les notes ?</summary><p>Ce sont les notes des platforms tiers, de 0 à 5 étoiles.</p></details>
-        <details><summary>Comment regarder un animé ?</summary><p>Clique sur une affiche puis sur « Regarder sur Crunchyroll ».</p></details>
-        <details><summary>Comment trouver un genre précis ?</summary><p>Utilise les catégories en haut de la page ou la barre de recherche.</p></details>
+        <details><summary>Comment sont données les notes ?</summary><p>Les notes sont affichées sur 5 étoiles et proviennent des données renseignées pour chaque animé.</p></details>
+        <details><summary>Comment regarder un animé ?</summary><p>Ouvre sa fiche puis choisis le lien de visionnage lorsqu'il est disponible.</p></details>
+        <details><summary>Comment trouver un genre ou une plateforme ?</summary><p>Les plateformes restent visibles dans l'en-tête ; le menu « Genre » se construit à partir des animés disponibles. Les filtres se combinent.</p></details>
       </div>
     </div>
   </main>
 
-  <div class="modal" id="modal" hidden>
+  <main id="note" class="wrap note" hidden>
+    <h1>Les notes des animés</h1>
+  
+    <div class="grille-notes">
+      <article class="panel carte-note">
+        <span class="tag">Mise à jour</span>
+        <h2>Call of the Night</h2>
+        <p class="mut">La couverture a été remplacée par une image de meilleure qualité.</p>
+        <p class="mut">26/11/2026</p>
+      </article>
+
+      <article class="panel carte-note">
+        <span class="tag">Abandon</span>
+        <h2>Page d’avis et d'exposition </h2>
+        <p class="mut">La page a été abandonnée parce qu’elle était trop complexe à mettre en place. Vous pouvez toujours laisser un avis dans l’onglet « Aide ».</p>
+        <p class="mut"><b>26/11/2026</b></p>
+      </article>
+
+      <article class="panel carte-note">
+        <span class="tag">Update</span>
+        <h2>Classement</h2>
+        <p class="mut">Les œuvres sont désormais classées par genre, mais aussi par plateforme.</p>
+        <p class="mut"><b>26/11/2026</b></p>
+      </article>
+
+      <article class="panel carte-note">
+        <span class="tag">Update</span>
+        <h2>Menu/Anime</h2>
+        <p class="mut">Les œuvres sont désormais classées par genre, mais aussi par plateforme.</p>
+        <p class="mut"><b>26/11/2026</b></p>
+      </article>
+
+      <article class="panel carte-note">
+        <span class="tag">Update</span>
+        <h2>Filtre par genre</h2>
+        <p class="mut">Auparavant affichés côte à côte, les genres sont désormais regroupés dans un menu déroulant.</p>
+        <p class="mut"><b>26/11/2026</b></p>
+      </article>
+
+    </div>
+  </main>
+
+
+  <div class="modal" id="modal">
     <div class="modal-box" id="modalBox" role="dialog" aria-modal="true" aria-label="Détails de l'animé"></div>
   </div>
 
-  <footer class="wrap">★ AnimeNote — site de fan.</footer>
-  <footer class="wrap">Source — Crunchyroll | ADN | Prime Video | Netflix<br>Information — Google</footer>
-  <footer class="wrap">Respect de votre vie privée<br> Aucune publicité, aucun cookie de suivi et aucune collecte volontaire de données personnelles. Votre navigation n'est pas suivie par notre site.</footer>
-  <footer class="wrap">Hébergement : GitHub Pages<br> © 2026 — Tous droits réservés</footer>
+  <footer class="wrap footer">
+    <p class="footer-brand">★ AnimeNote <span>— site de fan</span></p>
+    <p>Plateformes : Crunchyroll · Netflix · ADN · Prime Video</p>
+    <p class="privacy">Aucune publicité, aucun cookie de suivi et aucune collecte volontaire de données personnelles.</p>
+    <p>Hébergement : GitHub Pages · © 2026 — Tous droits réservés</p>
+  </footer>
 
+  <!-- animes.js expose ANIMES -->
   <script src="animes.js"></script>
   <script src="app.js"></script>
 </body>
