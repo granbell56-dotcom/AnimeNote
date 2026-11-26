@@ -315,7 +315,7 @@ select:focus, .panel input:focus, .panel textarea:focus { outline: none; border-
   .row { gap: 12px; }
   .row .card { flex-basis: clamp(134px, 39vw, 177px); }
   .catalogue-head { align-items: flex-start; }
-  .sort-label { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .sort-label { flex-direction: row; align-items: center; gap: 8px; margin-left: auto; }
   .sort-label select { max-width: 175px; }
   .modal-box { grid-template-columns: minmax(0, 1fr); }
   .modal-box > .poster { height: 190px; min-height: 190px; }
