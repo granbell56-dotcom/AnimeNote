@@ -233,7 +233,7 @@ select:focus, .panel input:focus, .panel textarea:focus { outline: none; border-
 .card-platforms { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; }
 .card-platforms .source-badge { padding: 2px 6px; font-size: 8px; }
 
-/* ---------- Apparition des cartes au défilement ---------- */
+/* ---------- Apparition des cartes au défilement + Description ---------- */
 .reveal { transform: translateY(22px); opacity: 0; transition: opacity .52s ease, transform .52s cubic-bezier(.2,.7,.2,1); }
 .reveal.in { transform: none; opacity: 1; }
 
@@ -253,7 +253,7 @@ select:focus, .panel input:focus, .panel textarea:focus { outline: none; border-
 .close { position: absolute; z-index: 2; top: 11px; right: 11px; width: 39px; height: 39px; border: 1px solid var(--line); border-radius: 50%; background: rgba(10,5,15,.85); font-size: 17px; cursor: pointer; }
 .close:hover { background: var(--f-deep); }
 .infos { display: grid; gap: 8px; margin: 0 0 20px; }
-.info-row { padding: 9px 11px; border-left: 2px solid rgba(255,255,255,.13); border-radius: 0 7px 7px 0; background: rgba(255,255,255,.035); color: var(--mut); font-size: 12px; overflow-wrap: anywhere; }
+.info-row { padding: 9px 11px; border-left: 2px solid rgba(255,255,255,.13); border-radius: 0 7px 7px 0; background: rgba(255,255,255,.035); color: rgba(255, 183, 241, 0.623); font-size: 12px; overflow-wrap: anywhere; }
 .info-row strong { color: var(--txt); }
 .info-row[class*="platform-"] { border-left-color: var(--platform); }
 .info-row.platform-crunchyroll strong { color: var(--orange); }
